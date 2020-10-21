@@ -9,16 +9,16 @@ find_package(Boost REQUIRED COMPONENTS system thread locale random)
 set (etcd-cpp-api_VERSION_MAJOR 0)
 set (etcd-cpp-api_VERSION_MINOR 1)
 
-EXEC_PROGRAM(protoc 
-  ARGS -I=${CMAKE_CURRENT_SOURCE_DIR}/proto
-       --cpp_out=${CMAKE_CURRENT_SOURCE_DIR}/proto
-       ${CMAKE_CURRENT_SOURCE_DIR}/proto/*.proto)
+# EXEC_PROGRAM(protoc 
+#   ARGS -I=${CMAKE_CURRENT_SOURCE_DIR}/proto
+#        --cpp_out=${CMAKE_CURRENT_SOURCE_DIR}/proto
+#        ${CMAKE_CURRENT_SOURCE_DIR}/proto/*.proto)
 
-EXEC_PROGRAM(protoc 
-    ARGS -I=${CMAKE_CURRENT_SOURCE_DIR}/proto
-        --grpc_out=${CMAKE_CURRENT_SOURCE_DIR}/proto
-        --plugin=protoc-gen-grpc=`which grpc_cpp_plugin`
-        ${CMAKE_CURRENT_SOURCE_DIR}/proto/rpc.proto)
+# EXEC_PROGRAM(protoc 
+#     ARGS -I=${CMAKE_CURRENT_SOURCE_DIR}/proto
+#         --grpc_out=${CMAKE_CURRENT_SOURCE_DIR}/proto
+#         --plugin=protoc-gen-grpc=`which grpc_cpp_plugin`
+#         ${CMAKE_CURRENT_SOURCE_DIR}/proto/rpc.proto)
 
 enable_testing()
 include_directories(SYSTEM ${CPPREST_INCLUDE_DIR} ${Boost_INCLUDE_DIR})
